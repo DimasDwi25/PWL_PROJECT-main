@@ -71,9 +71,9 @@
                                         <?php $__currentLoopData = $transaksi_terbaru; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $transaction): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <tr>
                                                     <td><?php echo e($transaction->nama); ?></td>
-                                                    <td><?php echo e($transaction->date); ?></td>
-                                                    <td><?php echo e($transaction->start_time); ?></td>
-                                                    <td><?php echo e($transaction->end_time); ?></td>
+                                                    <td><?php echo e(date('Y-m-d', strtotime(\Carbon\Carbon::parse($transactions->start_time)))); ?></td>
+                                                    <td><?php echo e(date('H:i:s', strtotime(\Carbon\Carbon::parse($transactions->start_time)))); ?></td>
+                                                    <td><?php echo e(date('H:i:s', strtotime(\Carbon\Carbon::parse($transactions->end_time)))); ?></td>
                                                     <?php if($transaction->bukti_pembayaran != null): ?>
                                                         <td>
                                                             <a href="" class="btn btn-outline-warning disabled">

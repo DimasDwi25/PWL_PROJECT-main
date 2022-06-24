@@ -34,16 +34,17 @@ class BookingController extends Controller
             
         ]);
 
-        $start_time = date('H:i', strtotime(\Carbon\Carbon::parse($transactions->start_time)->format('H:i:s')));
-
-        $end_time = date('H:i', strtotime(\Carbon\Carbon::parse($transactions->end_time)->format('H:i:s')));
-
-        $date = date('Y-m-d', strtotime(\Carbon\Carbon::parse($transactions->start_time)->format('H:i:s')));
+        
         
         
         if($transactions != null)
-        {         
-            if( $request->start_time == $start_time )
+        {        
+            $start_time = date('H:i', strtotime(\Carbon\Carbon::parse($transactions->start_time)->format('H:i:s')));
+
+            $end_time = date('H:i', strtotime(\Carbon\Carbon::parse($transactions->end_time)->format('H:i:s')));
+
+            $date = date('Y-m-d', strtotime(\Carbon\Carbon::parse($transactions->start_time))); 
+            if( ($request->start_time >= $start_time) && ($request->start_time < $end_time) )
             {
                 if($date == $request->date)
                 {

@@ -75,9 +75,9 @@
                                         @foreach ($transaksi_terbaru as $transaction)
                                                 <tr>
                                                     <td>{{ $transaction->nama }}</td>
-                                                    <td>{{ $transaction->date }}</td>
-                                                    <td>{{ $transaction->start_time }}</td>
-                                                    <td>{{ $transaction->end_time }}</td>
+                                                    <td>{{ date('d-m-Y', strtotime(Carbon\Carbon::parse($transaction->start_time))) }}</td>
+                                                    <td>{{ date('H:i:s', strtotime(Carbon\Carbon::parse($transaction->start_time))) }}</td>
+                                                    <td>{{ date('H:i:s', strtotime(Carbon\Carbon::parse($transaction->end_time))) }}</td>
                                                     @if($transaction->bukti_pembayaran != null)
                                                         <td>
                                                             <a href="" class="btn btn-outline-warning disabled">
@@ -100,7 +100,7 @@
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="5" align="center">Tidak ada data</td>
+                                            <td colspan="4" align="center">Tidak ada data</td>
                                         </tr>
                                     @endif
 

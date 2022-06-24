@@ -40,7 +40,6 @@
                                         <?php $__currentLoopData = $bookings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $booking): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <tr>
                                                     <td><?php echo e($booking->date); ?></td>
-                                                    
                                                     <td><?php echo e($booking->start_time); ?></td>
                                                     <td><?php echo e($booking->end_time); ?></td>
                                                     <td><?php echo e($booking->arenas->id); ?></td>
@@ -81,7 +80,7 @@
                             <thead>
                                 <tr>
                                     <th class="product-thumbnail">Nama</th>
-                                    <th class="product-thumbnail">tanggal</th>
+                                    <th class="product-name">Tanggal</th>
                                     <th class="product-name">jam mulai</th>
                                     <th class="product-price">jam selesai</th>
                                     <th class="product-quantity" width="20%">Aksi</th>
@@ -93,9 +92,9 @@
                                         <?php if($transaction->status_id == 1): ?>
                                             <tr>
                                                 <td><?php echo e($transaction->nama); ?></td>
-                                                <td><?php echo e($transaction->date); ?></td>
-                                                <td><?php echo e($transaction->start_time); ?></td>
-                                                <td><?php echo e($transaction->end_time); ?></td>
+                                                <td><?php echo e(date('Y-m-d', strtotime(Carbon\Carbon::parse($transaction->start_time)))); ?></td>
+                                                <td><?php echo e(date('H:i:s', strtotime(Carbon\Carbon::parse($transaction->start_time)))); ?></td>
+                                                <td><?php echo e(date('H:i:s', strtotime(Carbon\Carbon::parse($transaction->end_time)))); ?></td>
                                                 <td>
                                                     <?php if($transaction->bukti_pembayaran == null): ?>
                                                         <a href="<?php echo e(route('order.bayar', $transaction->id)); ?>" class="btn btn-success">
@@ -136,9 +135,10 @@
                                         <thead>
                                             <tr>
                                                 <th class="product-thumbnail">Nama</th>
-                                                <th class="product-thumbnail">tanggal</th>
+                                                <th class="product-name">Tanggal</th>
                                                 <th class="product-name">jam mulai</th>
                                                 <th class="product-price">jam selesai</th>
+                                                <th class="product-price">status</th>
                                                 <th class="product-quantity" width="20%">Aksi</th>
                                             </tr>
                                         </thead>
@@ -149,14 +149,16 @@
                                                     <?php if($transaction->status_id == 2): ?>
                                                         <tr>
                                                             <td><?php echo e($transaction->nama); ?></td>
-                                                            <td><?php echo e($transaction->date); ?></td>
-                                                            <td><?php echo e($transaction->start_time); ?></td>
-                                                            <td><?php echo e($transaction->end_time); ?></td>
+                                                            <td><?php echo e(date('Y-m-d', strtotime(Carbon\Carbon::parse($transaction->start_time)))); ?></td>
+                                                            <td><?php echo e(date('H:i:s', strtotime(Carbon\Carbon::parse($transaction->start_time)))); ?></td>
+                                                            <td><?php echo e(date('H:i:s', strtotime(Carbon\Carbon::parse($transaction->end_time)))); ?></td>
                                                             <td>
                                                                 <a href="" class="btn btn-outline-warning disabled">
                                                                     <?php echo e($transaction->status->nama); ?>
 
                                                                 </a>
+                                                            </td>
+                                                            <td>
                                                                 <a href="<?php echo e(route('order.details',$transaction->id)); ?>" class="btn btn-outline-success">
                                                                     detail
                                                                 </a>
@@ -166,9 +168,9 @@
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             <?php else: ?>
                                                 <tr>
-                                                    <td colspan="5" align="center">Tidak ada data</td>
+                                                    <td colspan="6" align="center">Tidak ada data</td>
                                                 </tr>
-                                            <?php endif; ?>    
+                                            <?php endif; ?>     
                                         </tbody>
                                     </table>
                                 </div>
@@ -191,26 +193,30 @@
                                         <thead>
                                             <tr>
                                                 <th class="product-thumbnail">Nama</th>
-                                                <th class="product-thumbnail">Tanggal</th>
+                                                <th class="product-name">Tanggal</th>
                                                 <th class="product-name">jam mulai</th>
                                                 <th class="product-price">jam selesai</th>
+                                                <th class="product-price">Status</th>
                                                 <th class="product-quantity" width="20%">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            
                                             <?php if(count($transactions)): ?>               
                                                 <?php $__currentLoopData = $transactions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $transaction): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <?php if($transaction->status_id == 3  || $transaction->status_id == 4): ?>
+                                                    <?php if($transaction->status_id == 3 || $transaction->status_id == 4): ?>
                                                         <tr>
                                                             <td><?php echo e($transaction->nama); ?></td>
-                                                            <td><?php echo e($transaction->date); ?></td>
-                                                            <td><?php echo e($transaction->start_time); ?></td>
-                                                            <td><?php echo e($transaction->end_time); ?></td>
+                                                            <td><?php echo e(date('Y-m-d', strtotime(Carbon\Carbon::parse($transaction->start_time)))); ?></td>
+                                                            <td><?php echo e(date('H:i:s', strtotime(Carbon\Carbon::parse($transaction->start_time)))); ?></td>
+                                                            <td><?php echo e(date('H:i:s', strtotime(Carbon\Carbon::parse($transaction->end_time)))); ?></td>
                                                             <td>
                                                                 <a href="" class="btn btn-outline-warning disabled">
                                                                     <?php echo e($transaction->status->nama); ?>
 
                                                                 </a>
+                                                            </td>
+                                                            <td>
                                                                 <a href="<?php echo e(route('order.details',$transaction->id)); ?>" class="btn btn-outline-success">
                                                                     detail
                                                                 </a>
@@ -220,9 +226,9 @@
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             <?php else: ?>
                                                 <tr>
-                                                    <td colspan="5" align="center">Tidak ada data</td>
+                                                    <td colspan="6" align="center">Tidak ada data</td>
                                                 </tr>
-                                            <?php endif; ?>    
+                                            <?php endif; ?>     
                                         </tbody>
                                     </table>
                                 </div>

@@ -36,17 +36,17 @@
                     <tr>
                         <td>Tanggal</td>
                         <td>:</td>
-                        <td  class="p-2">{{ $transactions->date }}</td>
+                        <td  class="p-2">{{ date('d-m-Y', strtotime(\Carbon\Carbon::parse($transactions->start_time))) }}</td>
                     </tr>
                     <tr>
                         <td>Waktu Mulai</td>
                         <td>:</td>
-                        <td  class="p-2">{{ $transactions->start_time }}</td>
+                        <td  class="p-2">{{ date('H:i:s', strtotime(\Carbon\Carbon::parse($transactions->start_time))) }}</td>
                     </tr>
                     <tr>
                         <td>Waktu Selesai</td>
                         <td>:</td>
-                        <td  class="p-2">{{ $transactions->end_time }}</td>
+                        <td  class="p-2">{{ date('H:i:s', strtotime(\Carbon\Carbon::parse($transactions->end_time))) }}</td>
                     </tr>
                     <tr>
                         <td>Total</td>
@@ -58,7 +58,7 @@
                             <td>Bukti Pembayaran</td>
                             <td>:</td>
                             <td  class="p-2"><img src="{{ asset('storage/'.$transactions->bukti_pembayaran) }}" alt="" srcset="" class="img-fluid" width="300"></td>
-                        </tr>                  
+                        </tr>      
                     @endif
                 </table>
                 </div>

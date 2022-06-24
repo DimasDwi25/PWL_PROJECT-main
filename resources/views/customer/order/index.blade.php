@@ -41,7 +41,6 @@
                                         @foreach ($bookings as $booking)
                                                 <tr>
                                                     <td>{{ $booking->date }}</td>
-                                                    
                                                     <td>{{ $booking->start_time }}</td>
                                                     <td>{{ $booking->end_time }}</td>
                                                     <td>{{ $booking->arenas->id }}</td>
@@ -82,7 +81,7 @@
                             <thead>
                                 <tr>
                                     <th class="product-thumbnail">Nama</th>
-                                    <th class="product-thumbnail">tanggal</th>
+                                    <th class="product-name">Tanggal</th>
                                     <th class="product-name">jam mulai</th>
                                     <th class="product-price">jam selesai</th>
                                     <th class="product-quantity" width="20%">Aksi</th>
@@ -94,9 +93,9 @@
                                         @if ($transaction->status_id == 1)
                                             <tr>
                                                 <td>{{ $transaction->nama }}</td>
-                                                <td>{{ $transaction->date }}</td>
-                                                <td>{{ $transaction->start_time }}</td>
-                                                <td>{{ $transaction->end_time }}</td>
+                                                <td>{{ date('d-m-Y', strtotime(Carbon\Carbon::parse($transaction->start_time))) }}</td>
+                                                <td>{{ date('H:i:s', strtotime(Carbon\Carbon::parse($transaction->start_time))) }}</td>
+                                                <td>{{ date('H:i:s', strtotime(Carbon\Carbon::parse($transaction->end_time))) }}</td>
                                                 <td>
                                                     @if($transaction->bukti_pembayaran == null)
                                                         <a href="{{ route('order.bayar', $transaction->id) }}" class="btn btn-success">
@@ -137,9 +136,10 @@
                                         <thead>
                                             <tr>
                                                 <th class="product-thumbnail">Nama</th>
-                                                <th class="product-thumbnail">tanggal</th>
+                                                <th class="product-name">Tanggal</th>
                                                 <th class="product-name">jam mulai</th>
                                                 <th class="product-price">jam selesai</th>
+                                                <th class="product-price">status</th>
                                                 <th class="product-quantity" width="20%">Aksi</th>
                                             </tr>
                                         </thead>
@@ -150,13 +150,15 @@
                                                     @if ($transaction->status_id == 2)
                                                         <tr>
                                                             <td>{{ $transaction->nama }}</td>
-                                                            <td>{{ $transaction->date }}</td>
-                                                            <td>{{ $transaction->start_time }}</td>
-                                                            <td>{{ $transaction->end_time }}</td>
+                                                            <td>{{ date('d-m-Y', strtotime(Carbon\Carbon::parse($transaction->start_time))) }}</td>
+                                                            <td>{{ date('H:i:s', strtotime(Carbon\Carbon::parse($transaction->start_time))) }}</td>
+                                                            <td>{{ date('H:i:s', strtotime(Carbon\Carbon::parse($transaction->end_time))) }}</td>
                                                             <td>
                                                                 <a href="" class="btn btn-outline-warning disabled">
                                                                     {{ $transaction->status->nama }}
                                                                 </a>
+                                                            </td>
+                                                            <td>
                                                                 <a href="{{ route('order.details',$transaction->id) }}" class="btn btn-outline-success">
                                                                     detail
                                                                 </a>
@@ -166,9 +168,9 @@
                                                 @endforeach
                                             @else
                                                 <tr>
-                                                    <td colspan="5" align="center">Tidak ada data</td>
+                                                    <td colspan="6" align="center">Tidak ada data</td>
                                                 </tr>
-                                            @endif    
+                                            @endif     
                                         </tbody>
                                     </table>
                                 </div>
@@ -191,25 +193,29 @@
                                         <thead>
                                             <tr>
                                                 <th class="product-thumbnail">Nama</th>
-                                                <th class="product-thumbnail">Tanggal</th>
+                                                <th class="product-name">Tanggal</th>
                                                 <th class="product-name">jam mulai</th>
                                                 <th class="product-price">jam selesai</th>
+                                                <th class="product-price">Status</th>
                                                 <th class="product-quantity" width="20%">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            
                                             @if(count($transactions))               
                                                 @foreach ($transactions as $transaction)
-                                                    @if ($transaction->status_id == 3  || $transaction->status_id == 4)
+                                                    @if ($transaction->status_id == 3 || $transaction->status_id == 4)
                                                         <tr>
                                                             <td>{{ $transaction->nama }}</td>
-                                                            <td>{{ $transaction->date }}</td>
-                                                            <td>{{ $transaction->start_time }}</td>
-                                                            <td>{{ $transaction->end_time }}</td>
+                                                            <td>{{ date('d-m-Y', strtotime(Carbon\Carbon::parse($transaction->start_time))) }}</td>
+                                                            <td>{{ date('H:i:s', strtotime(Carbon\Carbon::parse($transaction->start_time))) }}</td>
+                                                            <td>{{ date('H:i:s', strtotime(Carbon\Carbon::parse($transaction->end_time))) }}</td>
                                                             <td>
                                                                 <a href="" class="btn btn-outline-warning disabled">
                                                                     {{ $transaction->status->nama }}
                                                                 </a>
+                                                            </td>
+                                                            <td>
                                                                 <a href="{{ route('order.details',$transaction->id) }}" class="btn btn-outline-success">
                                                                     detail
                                                                 </a>
@@ -219,9 +225,9 @@
                                                 @endforeach
                                             @else
                                                 <tr>
-                                                    <td colspan="5" align="center">Tidak ada data</td>
+                                                    <td colspan="6" align="center">Tidak ada data</td>
                                                 </tr>
-                                            @endif    
+                                            @endif     
                                         </tbody>
                                     </table>
                                 </div>

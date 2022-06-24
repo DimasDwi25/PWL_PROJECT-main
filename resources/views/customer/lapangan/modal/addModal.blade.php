@@ -15,7 +15,7 @@
                     <div class="form-group mb-2">
                         <label for="date">pilih tanggal booking</label>
                         <input type="date" class="form-control @error('date') is-invalid @enderror"
-                            id="date" name="date" value="{{ old('date') }}" />
+                            id="date" name="date" value="{{ $jadwals }}" />
                     </div>
                 </div> 
                 <div class="modal-body">

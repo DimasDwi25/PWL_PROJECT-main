@@ -36,10 +36,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        
                                         @if (count($bookings))
                                         @foreach ($bookings as $booking)
                                                 <tr>
                                                     <td>{{ $booking->date }}</td>
+                                                    
                                                     <td>{{ $booking->start_time }}</td>
                                                     <td>{{ $booking->end_time }}</td>
                                                     <td>{{ $booking->arenas->id }}</td>
@@ -142,6 +144,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            
                                             @if(count($transactions))               
                                                 @foreach ($transactions as $transaction)
                                                     @if ($transaction->status_id == 2)

@@ -37,15 +37,18 @@ class TransactionController extends Controller
     {
         $bookings = Booking::findOrFail($id);
 
+        $start_time = date('Y-m-d H:i:s', strtotime("$bookings->date $bookings->start_time"));
+
+        $end_time = date('Y-m-d H:i:s', strtotime("$bookings->date $bookings->end_time"));
+
         if ($request->metode_pembayaran == 'transfer') {
 
             Transaction::create([
                 'users_id' => Auth::user()->id,
                 'invoice' => 'ALV'.date('Ymdhi'),
                 'nama' => $request->nama,
-                'date' => $request->date,
-                'start_time' => $request->start_time,
-                'end_time' => $request->end_time,
+                'start_time' => $start_time,
+                'end_time' => $end_time,
                 'status_id' => 1,
                 'sub_total' => $request->sub_total,
                 'no_hp' => $request->no_hp,
@@ -60,9 +63,8 @@ class TransactionController extends Controller
                 'users_id' => Auth::user()->id,
                 'invoice' => 'ALV'.date('Ymdhi'),
                 'nama' => $request->nama,
-                'date' => $request->date,
-                'start_time' => $request->start_time,
-                'end_time' => $request->end_time,
+                'start_time' => $start_time,
+                'end_time' => $end_time,
                 'status_id' => 2,
                 'sub_total' => $request->sub_total,
                 'no_hp' => $request->no_hp,
@@ -72,7 +74,7 @@ class TransactionController extends Controller
             ]);
         }
 
-        Booking::where('users_id', Auth::user()->id)->delete();
+        Booking::where('id', $bookings->id)->delete();
 
         return redirect()->route('order.index');
     }

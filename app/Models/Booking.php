@@ -15,7 +15,8 @@ class Booking extends Model
         'start_time',
         'end_time',
         'arenas_id',
-        'date',
+        'date'
+
     ];
 
     public function arenas()

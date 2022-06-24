@@ -21,8 +21,8 @@ class CreateTransactionsTable extends Migration
             $table->integer('sub_total');
             $table->string('nama');
             $table->date('date');
-            $table->time('start_time');
-            $table->time('end_time');
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
             $table->unsignedBigInteger('status_id');
             $table->string('bukti_pembayaran')->nullable();
             $table->timestamps();

@@ -71,7 +71,7 @@
                                 <td>:</td>
                                 <td  class="p-2"><img src="{{ asset('storage/'.$transactions->bukti_pembayaran) }}" alt="" srcset="" class="img-fluid" width="300"></td>
                             </tr>
-                            @if($transactions->status_id == 2)
+                            @if($transactions->status_id == 1)
                                 <tr>
                                     <td></td>
                                     <td></td>
@@ -81,7 +81,7 @@
                                 </tr>
                                 
                             @endif
-                        @elseif($transactions->status_id == 2)
+                        @elseif($transactions->status_id == 1)
                             <tr>
                               <td></td>
                               <td></td>

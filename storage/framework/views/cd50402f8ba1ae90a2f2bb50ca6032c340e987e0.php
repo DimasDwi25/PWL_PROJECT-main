@@ -35,10 +35,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        
                                         <?php if(count($bookings)): ?>
                                         <?php $__currentLoopData = $bookings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $booking): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <tr>
                                                     <td><?php echo e($booking->date); ?></td>
+                                                    
                                                     <td><?php echo e($booking->start_time); ?></td>
                                                     <td><?php echo e($booking->end_time); ?></td>
                                                     <td><?php echo e($booking->arenas->id); ?></td>
@@ -141,6 +143,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            
                                             <?php if(count($transactions)): ?>               
                                                 <?php $__currentLoopData = $transactions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $transaction): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <?php if($transaction->status_id == 2): ?>

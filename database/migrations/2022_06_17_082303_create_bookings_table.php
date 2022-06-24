@@ -17,9 +17,9 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('users_id');
             $table->unsignedBigInteger('arenas_id');
-            $table->date('date');
             $table->time('start_time');
             $table->time('end_time');
+            $table->date('date');
             $table->timestamps();
         });
     }

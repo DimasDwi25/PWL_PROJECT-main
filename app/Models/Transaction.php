@@ -22,7 +22,6 @@ class Transaction extends Model
         'bukti_pembayaran',
         'invoice',
         'nama',
-        'date',
         'start_time',
         'end_time',
         'arenas_id'

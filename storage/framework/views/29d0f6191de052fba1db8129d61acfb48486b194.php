@@ -22,7 +22,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                            id="date" name="date" value="<?php echo e(old('date')); ?>" />
+                            id="date" name="date" value="<?php echo e($jadwals); ?>" />
                     </div>
                 </div> 
                 <div class="modal-body">
